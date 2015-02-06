@@ -25,43 +25,128 @@
 
     <!-- custom local styles -->
     <style>
-
+        .row{
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .border{
+            border-bottom: solid blue 1px;   
+        }
 	</style>
 
   	</head>
   	<body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Movies</a>
+            </div>
+        </nav>
+        
 		<!-- page content -->
 		<div class="jumbotron">
-			<h1 class="text-center">Good Movies Make the Most Money!</h1> 
+			<h2 class="text-center">Good Movies Make the Most Money!</h2> 
 		</div>
+        
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row border">
 				<div class="col-md-8">
-					
+					<h2>Top 3 Grossing Movies in 2014</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra in eros nec scelerisque. Etiam sodales nec diam ac auctor. Maecenas gravida efficitur ex nec aliquam. Cras faucibus in tellus eget suscipit. Vestibulum sollicitudin semper erat non lobortis. Suspendisse potenti. Curabitur dolor eros, efficitur nec sodales quis, mattis cursus dui. Nam accumsan malesuada dui et mollis. 
+                    </p>
 				</div>
 				<div class="col-md-4">
-
+                    <table id="2014" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Total Gross</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Captain America</td>
+                                <td>$332,944,000</td>
+                            </tr>
+                            <tr>
+                                <td>Guardians of The Galaxy</td>
+                                <td>$333,145,154</td>
+                            </tr>
+                            <tr>
+                                <td>The Hunger Games</td>
+                                <td>$332,944,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
 				</div>
 			</div>
-
-			<div class="row">
+            
+			<div class="row border">
 				<div class="col-md-4">
-
+                    <table id="2000" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Total Gross</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cast Away</td>
+                                <td>$332,944,000</td>
+                            </tr>
+                            <tr>
+                                <td>How the Grinch Stole Christmas</td>
+                                <td>$333,145,154</td>
+                            </tr>
+                            <tr>
+                                <td>Mission Impossible II</td>
+                                <td>$332,944,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
 				</div>
 				<div class="col-md-8">
-
+                    <h2>Top 3 Grossing Movies in 2000</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra in eros nec scelerisque. Etiam sodales nec diam ac auctor. Maecenas gravida efficitur ex nec aliquam. Cras faucibus in tellus eget suscipit. Vestibulum sollicitudin semper erat non lobortis. Suspendisse potenti. Curabitur dolor eros, efficitur nec sodales quis, mattis cursus dui. Nam accumsan malesuada dui et mollis. 
+                    </p>
+				</div>
+			</div>
+            
+			<div class="row">
+				<div class="col-md-12">
+                    <h2>Top 3 Grossing Movies All Time</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra in eros nec scelerisque. Etiam sodales nec diam ac auctor. Maecenas gravida efficitur ex nec aliquam. Cras faucibus in tellus eget suscipit. Vestibulum sollicitudin semper erat non lobortis. Suspendisse potenti. Curabitur dolor eros, efficitur nec sodales quis, mattis cursus dui. Nam accumsan malesuada dui et mollis. 
+                    </p>
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row border">
 				<div class="col-md-12">
-
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-
+                    <table id="all-time" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Total Gross</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Avatar</td>
+                                <td>$2,787,965,087</td>
+                            </tr>
+                            <tr>
+                                <td>The Avengers</td>
+                                <td>$1,518,594,910</td>
+                            </tr>
+                            <tr>
+                                <td>Titanic</td>
+                                <td>$2,186,772,302</td>
+                            </tr>
+                        </tbody>
+                    </table>
 				</div>
 			</div>
 		</div>
@@ -78,7 +163,29 @@
 		
 		<!-- custom local javascript -->
 		<script>
-
+            $(document).ready(function() 
+			{
+			    /*$('#2014').DataTable();
+			    $('#2014').DataTable();
+			    $('#all-time').DataTable();*/
+                $(document).ready(function() {
+                    $('#2014').dataTable( {
+                        "searching": false,
+                        "paging":   false,
+                        "info":     false
+                    } );
+                    $('#2000').dataTable( {
+                        "searching": false,
+                        "paging":   false,
+                        "info":     false
+                    } );
+                    $('#all-time').dataTable( {
+                        "searching": false,
+                        "paging":   false,
+                        "info":     false
+                    } );
+                } );
+			} );
 		</script>
 	</body>
 </html>
