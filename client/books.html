@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Best-Selling Books</title>
+
+    <!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- datatables -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">	
+
+	<!-- class styles -->
+	<link rel="stylesheet" href="../css/csci343.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- custom local styles -->
+    <style>
+    	body{
+    		margin: 20px;
+    	}
+    	.container{
+    		width: 100%;
+    	}
+    	h2{
+    		font-family: "Times New Roman",serif;
+    	}
+    	table{
+    		border: 1px solid lightgray;
+    	}
+	</style>
+
+  	</head>
+  	<body>	
+  		<div class="container">
+	  		<h2>List of Best-Selling single-volume books</h2>
+	  		<hr>
+	  		<p><strong>More than 100 million copies</strong></p>
+			<table id="books" class="table table-bordered" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+	                    <th class="text-center">Book</th>
+	                    <th class="text-center">Author(s)</th>
+	                    <th class="text-center">Original language</th>
+	                    <th class="text-center">First published</th>
+	                    <th class="text-center">Aproximate sales</th>
+	                </tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<a href="#">The Lord of the Rings</a><br>
+							(sometimes considered a series)
+						</td>
+						<td><a href="#">J. R. R. Tolkien</a></td>
+						<td>English</td>
+						<td>1954-1955</td>
+						<td>150 million</td>
+					</tr>
+					<tr>
+						<td>
+							Le Petit Prince
+							(<a href="#">The Little Prince</a>)
+						</td>
+						<td><a href="#">Antoine de Saint-Exupery</a></td>
+						<td>French</td>
+						<td>1943</td>
+						<td>140 million</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#">Harry Potter and the Philosopher's Stone</a>
+						</td>
+						<td><a href="#">J. K. Rowling</a></td>
+						<td>English</td>
+						<td>1997</td>
+						<td>107 million</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#">And Then There Were None</a>
+						</td>
+						<td><a href="#">Agatha Christie</a></td>
+						<td>English</td>
+						<td>1939</td>
+						<td>100 million</td>
+					</tr>
+					<tr>
+						<td>
+							(<a href="#">Dream of the Red Chamber</a>)
+						</td>
+						<td><a href="#">Cao Xuequin</a></td>
+						<td>Chinese</td>
+						<td>1754-1791</td>
+						<td>100 million</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#">The Hobbit</a>
+						</td>
+						<td><a href="#">J. R. R. Tolkien</a></td>
+						<td>English</td>
+						<td>1937</td>
+						<td>100 million</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#">She: A History of Adventure</a>
+						</td>
+						<td><a href="#">H. Rider Haggard</a></td>
+						<td>English</td>
+						<td>1887</td>
+						<td>100 million</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+
+		<!-- jquery -->
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
+
+		<!-- datatables -->	
+		<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>	
+
+		<!-- class scipts -->
+		<script src="../js/csci343.js"></script>	
+		
+		<!-- custom local javascript -->
+		<script>
+			$(document).ready(function() {
+                $('#books').dataTable( {
+                    "searching": false,
+                    "paging":   false,
+                    "info":     false
+                } );
+            } );
+		</script>
+	</body>
+</html>
