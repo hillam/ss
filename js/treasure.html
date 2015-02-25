@@ -25,53 +25,56 @@
 
     <!-- custom local styles -->
     <style>
-    .btn{
-    	width: 100%;
+    body{
+    	margin-top: 100px;
     }
-    .row{
-    	margin-bottom: 3px;
+    .row-fixed{
+    	margin: 0px;
+    	height: 100px;
     }
+    .col-md-4{
+		border: solid black 1px;
+		height: 100%;
+		text-align: center;
+		font-size: 30px;
+	}
 	</style>
-
   	</head>
   	<body>
 		<!-- page content -->
 		<div class="container">
-			<div class="row">
-				<div class="col-md-1">
-					<button class="btn" id="0">?</button>
+			<div class="row-fixed">
+				<div class="col-md-4" id="0">
+					<p>?</p>
 				</div>
-				<div class="col-md-1">
-					<button class="btn" id="1">?</button>
+				<div class="col-md-4" id="1">
+					<p>?</p>
 				</div>
-				<div class="col-md-1">
-					<button class="btn" id="2">?</button>
+				<div class="col-md-4" id="2">
+					<p>?</p>
 				</div>
-				<div class="col-md-9"></div>
 			</div>
-			<div class="row">
-				<div class="col-md-1">
-					<button class="btn" id="3">?</button>
+			<div class="row-fixed">
+				<div class="col-md-4" id="3">
+					<p>?</p>
 				</div>
-				<div class="col-md-1">
-					<button class="btn" id="4">?</button>
+				<div class="col-md-4" id="4">
+					<p>?</p>
 				</div>
-				<div class="col-md-1">
-					<button class="btn" id="5">?</button>
+				<div class="col-md-4" id="5">
+					<p>?</p>
 				</div>
-				<div class="col-md-9"></div>
 			</div>
-			<div class="row">
-				<div class="col-md-1">
-					<button class="btn" id="6">?</button>
+			<div class="row-fixed">
+				<div class="col-md-4" id="6">
+					<p>?</p>
 				</div>
-				<div class="col-md-1">
-					<button class="btn" id="7">?</button>
+				<div class="col-md-4" id="7">
+					<p>?</p>
 				</div>
-				<div class="col-md-1">
-					<button class="btn" id="8">?</button>
+				<div class="col-md-4" id="8">
+					<p>?</p>
 				</div>
-				<div class="col-md-9"></div>
 			</div>
 		</div>
 
@@ -92,14 +95,12 @@
 			
 			var lost = false;
 
-			$('.btn').click(function(){
+			$('.col-md-4').click(function(){
 				if(!lost){
-					console.log(values[parseInt($(this).attr('id'))]);
 					$(this).text(values[parseInt($(this).attr('id'))]);
 
 					if(values[parseInt($(this).attr('id'))] == 'TRAP'){
-						$('#'+$(this).attr('id')).attr('class','btn btn-danger');
-						alert('YOU LOSE');
+						$('#'+$(this).attr('id')).css('background-color','red');
 						lost = true;
 					}
 				}
@@ -109,7 +110,7 @@
 				var temp;
 				var index;
 				for(var i=0;i<array.length;i++){
-					index = random()*array.length;
+					index = Math.floor(Math.random() * array.length);
 					temp = array[i];
 					array[i] = array[index];
 					array[index] = temp;
