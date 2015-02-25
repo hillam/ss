@@ -38,6 +38,9 @@
 		text-align: center;
 		font-size: 30px;
 	}
+	.btn-area{
+		margin-top: 20px;
+	}
 	</style>
   	</head>
   	<body>
@@ -76,6 +79,9 @@
 					<p>?</p>
 				</div>
 			</div>
+			<div class="btn-area">
+				<button class="btn btn-success" id="restart">Play Again</button>
+			</div>
 		</div>
 
 		<!-- jquery -->
@@ -94,16 +100,36 @@
 			values = scramble(values);
 			
 			var lost = false;
+			var found = 0;
+
+			$(document).ready(function(){
+				$('#restart').hide();
+			});
 
 			$('.col-md-4').click(function(){
 				if(!lost){
+					if($(this).text() == '?')
+						found ++;
+
 					$(this).text(values[parseInt($(this).attr('id'))]);
 
 					if(values[parseInt($(this).attr('id'))] == 'TRAP'){
-						$('#'+$(this).attr('id')).css('background-color','red');
+						$('.col-md-4').css('background-color','red');
 						lost = true;
 					}
 				}
+
+				if(found == 8 || lost){
+					$('#restart').show();
+				}
+			});
+
+			$('#restart').click(function(){
+				$('.col-md-4').css('background-color','white');
+				$('.col-md-4').text('?');
+				values = scramble(values);
+				lost = false;
+				$('#restart').hide();
 			});
 
 			function scramble(array){
