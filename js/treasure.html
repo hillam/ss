@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Memory Game</title>
+    <title>Treasure Hunt</title>
 
     <!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -39,37 +39,37 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-1">
-					<button class="btn" id="btn_0">?</button>
+					<button class="btn" id="0">?</button>
 				</div>
 				<div class="col-md-1">
-					<button class="btn" id="btn_1">?</button>
+					<button class="btn" id="1">?</button>
 				</div>
 				<div class="col-md-1">
-					<button class="btn" id="btn_2">?</button>
-				</div>
-				<div class="col-md-9"></div>
-			</div>
-			<div class="row">
-				<div class="col-md-1">
-					<button class="btn" id="btn_3">?</button>
-				</div>
-				<div class="col-md-1">
-					<button class="btn" id="btn_4">?</button>
-				</div>
-				<div class="col-md-1">
-					<button class="btn" id="btn_5">?</button>
+					<button class="btn" id="2">?</button>
 				</div>
 				<div class="col-md-9"></div>
 			</div>
 			<div class="row">
 				<div class="col-md-1">
-					<button class="btn" id="btn_6">?</button>
+					<button class="btn" id="3">?</button>
 				</div>
 				<div class="col-md-1">
-					<button class="btn" id="btn_7">?</button>
+					<button class="btn" id="4">?</button>
 				</div>
 				<div class="col-md-1">
-					<button class="btn" id="btn_8">?</button>
+					<button class="btn" id="5">?</button>
+				</div>
+				<div class="col-md-9"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-1">
+					<button class="btn" id="6">?</button>
+				</div>
+				<div class="col-md-1">
+					<button class="btn" id="7">?</button>
+				</div>
+				<div class="col-md-1">
+					<button class="btn" id="8">?</button>
 				</div>
 				<div class="col-md-9"></div>
 			</div>
@@ -87,21 +87,35 @@
 		
 		<!-- custom local javascript -->
 		<script>
-			var values = ['CAT','DOG','FISH','DOG','SKY','CAT','FISH','SKY','LOSE'];
+			var values = ['Cookie','Shiny thing','Ruby','Perl','Gold','IBM Model M','1up','$0.25','TRAP'];
+			values = scramble(values);
+			
 			var lost = false;
 
 			$('.btn').click(function(){
-				if(!lost)
-					$(this).text(values[parseInt($(this).attr('id').charAt(4))]);
-			});
-
-			$('#btn_8').click(function(){
 				if(!lost){
-					$('#btn_8').attr('class','btn btn-danger');
-					alert('YOU LOSE');
-					lost = true;
+					console.log(values[parseInt($(this).attr('id'))]);
+					$(this).text(values[parseInt($(this).attr('id'))]);
+
+					if(values[parseInt($(this).attr('id'))] == 'TRAP'){
+						$('#'+$(this).attr('id')).attr('class','btn btn-danger');
+						alert('YOU LOSE');
+						lost = true;
+					}
 				}
 			});
+
+			function scramble(array){
+				var temp;
+				var index;
+				for(var i=0;i<array.length;i++){
+					index = random()*array.length;
+					temp = array[i];
+					array[i] = array[index];
+					array[index] = temp;
+				}
+				return array;
+			}
 		</script>
 	</body>
 </html>
