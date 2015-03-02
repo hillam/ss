@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
 	<!-- datatables -->
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
 
 	<!-- class styles -->
 	<link rel="stylesheet" href="../css/csci343.css">
@@ -25,62 +25,70 @@
 
     <!-- custom local styles -->
     <style>
-    body{
-    	margin-top: 100px;
+    .jumbotron{
+    	padding: 10px;
     }
-    .row-fixed{
-    	margin: 0px;
+    .row{
+    	margin: 10px 10px 30px 10px;
     	height: 100px;
     }
-    .col-md-4{
+    .col-md-4,p{
+    	height: 100%;
+    }
+    p{
 		border: solid black 1px;
-		height: 100%;
 		text-align: center;
-		font-size: 30px;
+		font-size: 20px;
+		width: 30%;
 	}
-	.btn-area{
-		margin-top: 20px;
+	.center{
+		margin-left: auto;
+		margin-right: auto;
 	}
 	</style>
   	</head>
   	<body>
 		<!-- page content -->
+		<div class="jumbotron">
+			<h1>Treasure Hunt</h1>
+			<h3>Score: <span id="score">0</span></h3>
+		</div>
 		<div class="container">
-			<div class="row-fixed">
-				<div class="col-md-4" id="0">
-					<p>?</p>
+			<div class="row">
+				<div class="col-md-4">
+					<p class="center" class="center" id="0">?</p>
 				</div>
-				<div class="col-md-4" id="1">
-					<p>?</p>
+				<div class="col-md-4">
+					<p class="center" id="1">?</p>
 				</div>
-				<div class="col-md-4" id="2">
-					<p>?</p>
-				</div>
-			</div>
-			<div class="row-fixed">
-				<div class="col-md-4" id="3">
-					<p>?</p>
-				</div>
-				<div class="col-md-4" id="4">
-					<p>?</p>
-				</div>
-				<div class="col-md-4" id="5">
-					<p>?</p>
+				<div class="col-md-4">
+					<p class="center" id="2">?</p>
 				</div>
 			</div>
-			<div class="row-fixed">
-				<div class="col-md-4" id="6">
-					<p>?</p>
+			<div class="row">
+				<div class="col-md-4">
+					<p class="center" id="3">?</p>
 				</div>
-				<div class="col-md-4" id="7">
-					<p>?</p>
+				<div class="col-md-4">
+					<p class="center" id="4">?</p>
 				</div>
-				<div class="col-md-4" id="8">
-					<p>?</p>
+				<div class="col-md-4">
+					<p class="center" id="5">?</p>
 				</div>
 			</div>
-			<div class="btn-area">
-				<button class="btn btn-success" id="restart">Play Again</button>
+			<div class="row">
+				<div class="col-md-4">
+					<p class="center" id="6">?</p>
+				</div>
+				<div class="col-md-4">
+					<p class="center" id="7">?</p>
+				</div>
+				<div class="col-md-4">
+					<p class="center" id="8">?</p>
+				</div>
+			</div>
+			<div class="row" align="center">
+				<button class="btn btn-success btn-lg" id="restart">Play Again</button>
 			</div>
 		</div>
 
@@ -101,34 +109,42 @@
 			
 			var lost = false;
 			var found = 0;
+			var score = 0;
 
 			$(document).ready(function(){
 				$('#restart').hide();
 			});
 
-			$('.col-md-4').click(function(){
-				if(!lost){
-					if($(this).text() == '?')
-						found ++;
+			$('p').click(function(){
+				if(!lost && found < 8){
+					if($(this).text() == '?'){
+						if(values[parseInt($(this).attr('id'))] != 'TRAP'){
+							found ++;
+							score += found;
+							$('#score').text(score);
+						}
+						else{
+							$('p').css('background-color','red');
+							lost = true;
+							$('#restart').show();
+						}
+					}
 
 					$(this).text(values[parseInt($(this).attr('id'))]);
-
-					if(values[parseInt($(this).attr('id'))] == 'TRAP'){
-						$('.col-md-4').css('background-color','red');
-						lost = true;
-					}
 				}
 
-				if(found == 8 || lost){
+				if(found == 8){
+					$('p').css('background-color','green')
 					$('#restart').show();
 				}
 			});
 
 			$('#restart').click(function(){
-				$('.col-md-4').css('background-color','white');
-				$('.col-md-4').text('?');
+				$('p').css('background-color','white');
+				$('p').text('?');
 				values = scramble(values);
 				lost = false;
+				found = 0;
 				$('#restart').hide();
 			});
 
