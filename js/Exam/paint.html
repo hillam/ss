@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Paint Can</title>
+
+    <!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- datatables -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">	
+
+	<!-- class styles -->
+	<link rel="stylesheet" href="../css/csci343.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- custom local styles -->
+    <style>
+	    .container{
+	    	background-color: white;
+	    	margin-bottom: 20px;
+	    }
+	    .form{
+	    	border: solid black 1px;
+	    	padding: 10px;
+	    	margin-bottom: 20px;
+	    }
+	    .row{
+	    	border: solid black 1px;
+	    	padding: 10px;
+	    	margin-left: 5%;
+	    	margin-right: 5%;
+	    }
+	    #color-box{
+	    	border: solid black 1px;
+	    	margin: 10px 30px 10px 30px;
+	    	height: 150px;
+	    }
+	</style>
+
+  	</head>
+  	<body>
+		<!-- page content -->
+		<div class="container">
+			<div class="jumbotron">
+				<h1 class="text-center">Mr. Paint Helper</h1>
+			</div>
+			<form class="form" id="paint-form">
+				<div class="form-group">
+					<label for="sqft">Square Ft:</label>
+					<input class="form-control" required type="number" min="1" id="sqft">
+				</div>
+				<div class="form-group">
+					<label for="sqft_pc">Square Ft Per Can:</label>
+					<input class="form-control" required type="number" min="1" id="sqft_pc">
+				</div>
+				<div class="form-group">
+					<label for="cost">Cost Per Can:</label>
+					<input class="form-control" required type="number" min="1" id="cost">
+				</div>
+				<div class="form-group">
+					<label for="color">Paint Color (e.g. #FFFFFF):</label>
+					<input class="form-control" required type="text" id="color">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="button" class="btn btn-default" id="clear">Clear</button>
+			</form>
+
+			<div class="row">
+				<div class="col-md-9">
+					<p>Number of cans required: <span id="cans">0</span></p>
+					<p>Total Cost: $<span id="total_cost">0</span></p>
+				</div>
+				<div class="col-md-3">
+					<p id="color-box"></p>
+				</div>
+			</div>
+		</div>
+		<!-- jquery -->
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
+
+		<!-- datatables -->	
+		<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>	
+
+		<!-- class scipts -->
+		<script src="../js/csci343.js"></script>
+		
+		<!-- custom local javascript -->
+		<script>
+			$('#paint-form').submit(function(){
+				var cans = $('#sqft').val() / $('#sqft_pc').val();
+				var cost = cans * $('#cost').val();
+				$('#cans').text(cans);
+				$('#total_cost').text(cost);
+				$('#color-box').css("background-color",$('#color').val());
+				return false;
+			});
+			$('#clear').click(function(){
+				$('.form-control').val("");
+			});
+		</script>
+	</body>
+</html>

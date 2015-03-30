@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Save The Fire Ants</title>
+
+    <!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- datatables -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">	
+
+	<!-- class styles -->
+	<link rel="stylesheet" href="../css/csci343.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- custom local styles -->
+    <style>
+    	#color-box{
+    		background-color: red;
+    	}
+	</style>
+
+  	</head>
+  	<body>
+		<!-- page content -->
+		<div class="container">
+			<h1>Donate To Save The Fire Ants</h1>
+			<form class="form" id="donor-form">
+				<div class="form-group">
+					<label for="name">Full Name</label>
+					<input class="form-control" required type="text" id="name">
+				</div>
+				<div class="form-group">
+					<label for="donation">Donation ($10-$100)</label>
+					<input class="form-control" required type="number" min="10" max="100" id="donation">
+				</div>
+				<button type="submit" class="btn btn-primary">Donate!</button>
+			</form>
+
+			<div class="row">
+				<div class="col-md-6">
+					<h2>Donor List</h2>
+					<ul id="list">
+
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<h2>Goal Target $250</h2>
+					<p id="color-box"></p>
+					<p id="raised-label"><span id="raised"></span></p>
+				</div>
+			</div>
+		</div>
+		<!-- jquery -->
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
+
+		<!-- datatables -->	
+		<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>	
+
+		<!-- class scipts -->
+		<script src="../js/csci343.js"></script>
+		
+		<!-- custom local javascript -->
+		<script>
+			var total = 0;
+			
+			$('#donor-form').submit(function(){
+				if(total == 0){
+					$('#color-box').css('height','50px');
+					$('#color-box').css('border','solid black 1px');
+					$('#raised-label').prepend("Raised so far $");
+				}
+
+				total += parseInt($('#donation').val());
+				$('#raised').text(total);
+
+				$('#color-box').css('width',total+'px');
+				if(total >= 100)
+					$('#color-box').css('background-color','yellow');
+				else if(total >= 250)
+					$('#color-box').css('background-color','green');
+
+				$('#list').append("<li>" + $('#name').val() + 
+					" $" + $('#donation').val() + "</li>");
+
+				$('#name').val("");
+				$('#donation').val("");
+
+				return false;
+			});
+		</script>
+	</body>
+</html>
